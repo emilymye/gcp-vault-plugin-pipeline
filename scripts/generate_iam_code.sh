@@ -11,12 +11,12 @@ git clone $PLUGIN src/$PLUGIN_GOPATH
 
 # Generate new files
 go generate $PLUGIN_GOPATH/plugin/iamutil
+cd src/github.com/hashicorp/$PLUGIN
 
 # Make sure it builds
 if [ "$(make dev)" ];then
   exit 1
-else 
-  cd src/github.com/hashicorp/$PLUGIN
+else
   if [ "$(git ls-files -m)" ]; then
     git config --global user.email "emilyye@google.org"
     git config --global user.name "Emily Ye"
@@ -29,7 +29,7 @@ else
 fi
 
 cd $GOPATH
-mv $PLUGIN_GOPATH/* ./updated-files
+mv src/$PLUGIN_GOPATH/* ./updated-files
 ls -la updated-files
 
   
