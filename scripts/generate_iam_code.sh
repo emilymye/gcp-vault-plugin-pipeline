@@ -29,7 +29,7 @@ else
 fi
 
 cd $GOPATH
-mv src/github.com/hashicorp/$PLUGIN .
+mv src/github.com/hashicorp/$PLUGIN ./updated_files
 
 echo "Current dir: $PWD"
 ls updated_files
