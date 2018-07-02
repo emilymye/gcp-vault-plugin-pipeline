@@ -1,5 +1,4 @@
 #!/bin/sh
-
 export PLUGIN="vault-plugin-secrets-gcp"
 export PLUGIN_GOPATH="github.com/hashicorp/$PLUGIN"
 
@@ -33,7 +32,7 @@ else
 fi
 
 cd $GOPATH
-mv src/$PLUGIN_GOPATH/* ./updated-files
-ls -la updated-files
+mv src/$PLUGIN_GOPATH/.git ./updated-files
+
 
   
