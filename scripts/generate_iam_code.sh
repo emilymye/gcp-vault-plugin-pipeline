@@ -4,6 +4,7 @@ export PLUGIN="vault-plugin-secrets-gcp"
 export PLUGIN_GOPATH="github.com/hashicorp/$PLUGIN"
 
 export GOPATH=$PWD
+export PATH=$PATH:$GOPATH/bin
 echo "Generating IAM API library for vault-plugin-secrets-gcp..."
 
 mkdir -p src/$PLUGIN_GOPATH
