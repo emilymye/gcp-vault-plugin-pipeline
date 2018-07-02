@@ -27,4 +27,4 @@ else
 fi
 
 cd $HOMEDIR
-git clone $PLUGIN src/github.com/hashicorp/$PLUGIN
+mv src/github.com/hashicorp/$PLUGIN $HOMEDIR/updated_files
