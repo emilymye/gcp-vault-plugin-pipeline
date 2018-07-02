@@ -13,16 +13,16 @@ git clone $PLUGIN src/$PLUGIN_GOPATH
 go generate $PLUGIN_GOPATH/plugin/iamutil
 
 # Make sure it builds
-if [ make dev ]; then 
+if [ "$(make dev)" ];then
   exit 1
 else 
   cd src/github.com/hashicorp/$PLUGIN
-  if [ "$(git ls-files -m)" ]; then 
+  if [ "$(git ls-files -m)" ];then
     commit_changes()
   else
     echo "no changes detected"
   fi
-end
+fi
 
 cd $GOPATH
 mv $PLUGIN_GOPATH/* ./updated-files
