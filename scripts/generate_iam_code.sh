@@ -1,7 +1,6 @@
 #!/bin/sh
 
 export OUTPATH_DIR="updated_files"
-export HOMEDIR=$PWD
 export GOPATH=$PWD
 
 export PLUGIN="vault-plugin-secrets-gcp"
@@ -15,6 +14,9 @@ git clone $PLUGIN src/github.com/hashicorp/$PLUGIN
 # Generate new files
 go generate $GEN_PKG
 
+# Make sure it builds
+make build
+
 cd src/github.com/hashicorp/$PLUGIN
 if [ "$(git ls-files -m)" ]; then 
   git config --global user.email "emilyye@google.org"
@@ -26,5 +28,10 @@ else
   echo "no changes detected"
 fi
 
-cd $HOMEDIR
-mv src/github.com/hashicorp/$PLUGIN $HOMEDIR/updated_files
+cd $GOPATH
+mv src/github.com/hashicorp/$PLUGIN ./updated_files
+
+echo "Current dir: $PWD"
+ls updated_files
+
+
