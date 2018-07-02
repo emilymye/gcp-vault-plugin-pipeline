@@ -13,7 +13,7 @@ git clone $PLUGIN src/$PLUGIN_GOPATH
 go generate $PLUGIN_GOPATH/plugin/iamutil
 
 # Make sure it builds
-make build
+make dev
 
 cd src/github.com/hashicorp/$PLUGIN
 if [ "$(git ls-files -m)" ]; then 
@@ -27,6 +27,7 @@ else
 fi
 
 cd $GOPATH
-mv src/github.com/hashicorp/$PLUGIN/* ./updated-files
+mv src/github.com/hashicorp/vault-plugin-secrets-gcp/* ./updated-files
 
+ls updated-files
 
