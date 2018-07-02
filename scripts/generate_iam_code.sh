@@ -17,8 +17,12 @@ if [ "$(make dev)" ];then
   exit 1
 else 
   cd src/github.com/hashicorp/$PLUGIN
-  if [ "$(git ls-files -m)" ];then
-    commit_changes()
+  if [ "$(git ls-files -m)" ]; then
+    git config --global user.email "emilyye@google.org"
+    git config --global user.name "Emily Ye"
+
+    git add plugin/iamutil/iam_resources_generated.go
+    git commit -m "Autoupdate to generated IAM APIs $(date "+%D")"
   else
     echo "no changes detected"
   fi
@@ -28,10 +32,4 @@ cd $GOPATH
 mv $PLUGIN_GOPATH/* ./updated-files
 ls -la updated-files
 
-commit_changes() {
-  git config --global user.email "emilyye@google.org"
-  git config --global user.name "Emily Ye"
-
-  git add plugin/iamutil/iam_resources_generated.go
-  git commit -m "Autoupdate to generated IAM APIs $(date "+%D")"
-}
+  
