@@ -16,11 +16,8 @@ cd src/github.com/hashicorp/$PLUGIN
 make bootstrap
 
 # Make sure it builds
-RESULT=$(make dev)
-if [ "$RESULT" ]; then
-  echo "Unable to build, stopping"
-  exit 1
-else
+make dev 
+if [ $? -eq 0 ]; then
   if [ "$(git ls-files -m)" ]; then
     git config --global user.email "emilyye@google.org"
     git config --global user.name "Emily Ye"
@@ -30,6 +27,9 @@ else
   else
     echo "no changes detected"
   fi
+else 
+  echo "Unable to build, stopping"
+  exit 1
 fi
 
 cd $GOPATH
