@@ -16,7 +16,9 @@ cd src/github.com/hashicorp/$PLUGIN
 make bootstrap
 
 # Make sure it builds
-if [ "$(make dev)" ];then
+RESULT=$(make dev)
+if [ "$RESULT" ]; then
+  echo "Unable to build, stopping"
   exit 1
 else
   if [ "$(git ls-files -m)" ]; then
