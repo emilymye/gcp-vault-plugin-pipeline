@@ -1,18 +1,16 @@
 #!/bin/sh
 
-export OUTPATH_DIR="updated_files"
-export GOPATH=$PWD
-
 export PLUGIN="vault-plugin-secrets-gcp"
-export GEN_PKG="github.com/hashicorp/vault-plugin-secrets-gcp/plugin/iamutil"
+export PLUGIN_GOPATH="github.com/hashicorp/$PLUGIN"
 
+export GOPATH=$PWD
 echo "Generating IAM API library for vault-plugin-secrets-gcp..."
 
-mkdir -p src/github.com/hashicorp/$PLUGIN
-git clone $PLUGIN src/github.com/hashicorp/$PLUGIN
+mkdir -p src/$PLUGIN_GOPATH
+git clone $PLUGIN src/$PLUGIN_GOPATH
 
 # Generate new files
-go generate $GEN_PKG
+go generate $PLUGIN_GOPATH/plugin/iamutil
 
 # Make sure it builds
 make build
@@ -29,9 +27,6 @@ else
 fi
 
 cd $GOPATH
-mv src/github.com/hashicorp/$PLUGIN ./updated-files
-
-echo "Current dir: $PWD"
-ls updated-files
+mv src/github.com/hashicorp/$PLUGIN/* ./updated-files
 
 
