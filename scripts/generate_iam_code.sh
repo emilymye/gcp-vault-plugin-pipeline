@@ -5,12 +5,12 @@ export PLUGIN_GOPATH="github.com/hashicorp/$PLUGIN"
 
 export GOPATH=$PWD
 export PATH=$PATH:$GOPATH/bin
-echo "Generating IAM API library for vault-plugin-secrets-gcp..."
 
 mkdir -p src/$PLUGIN_GOPATH
 git clone $PLUGIN src/$PLUGIN_GOPATH
 
 # Generate new files
+echo "Running go generate for IAM API library"
 go generate $PLUGIN_GOPATH/plugin/iamutil
 cd src/github.com/hashicorp/$PLUGIN
 make bootstrap
