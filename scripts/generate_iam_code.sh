@@ -12,6 +12,7 @@ git clone $PLUGIN src/$PLUGIN_GOPATH
 # Generate new files
 go generate $PLUGIN_GOPATH/plugin/iamutil
 cd src/github.com/hashicorp/$PLUGIN
+make bootstrap
 
 # Make sure it builds
 if [ "$(make dev)" ];then
